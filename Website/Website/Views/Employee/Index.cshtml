@@ -1,0 +1,27 @@
+﻿@using DataLayer
+@model IEnumerable<DataLayer.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@section MainContent{
+    @{
+
+        <div class="col-lg-6 col-md-6 bg-gray-light">
+            @{
+                Html.RenderPartial("_List", Model);
+            }
+        </div>
+
+        <div class="col-lg-1 col-md-1">
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="col-lg-4 col-md-4 bg-gray-light">
+            @{
+                Html.RenderPartial("Create", new Employee() {Name = "New Name"});
+            }
+        </div>
+    }
+}
