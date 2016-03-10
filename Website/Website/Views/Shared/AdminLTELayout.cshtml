@@ -16,6 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
+    
+
     <!-- Theme style -->
     <link rel="stylesheet" href="~/AdminLTE2/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -250,7 +254,7 @@ desired effect
                 <ul class="sidebar-menu">
                     <li class="header">HEADER</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+                    <li class="active"><a href="@Url.Content("~/Employee")"><i class="fa fa-link"></i> <span>Employee</span></a></li>
                     <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -376,8 +380,11 @@ desired effect
     <!-- ./wrapper -->
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.1.4 -->
+
     <script src="~/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
+    <script src="~/plugins/jQueryUI/jquery-ui.min.js"></script>
+
+<!-- Bootstrap 3.3.5 -->
     <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/AdminLTE2/js/app.min.js"></script>
@@ -385,5 +392,8 @@ desired effect
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -1,11 +1,16 @@
 ﻿@model DataLayer.Employee
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, new { @id = string.Empty }, FormMethod.Post,
+    new { @id = "myForm" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Create New Employee</h4>
+
+        <div class="well well-sm">
+            <h4>Create New Employee</h4>
+        </div>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

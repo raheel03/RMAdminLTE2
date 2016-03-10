@@ -1,5 +1,5 @@
 ﻿@using DataLayer
-@model IEnumerable<DataLayer.Employee>
+@model IEnumerable<Employee>
 @{
     ViewBag.Title = "Index";
 }
@@ -8,20 +8,58 @@
 @section MainContent{
     @{
 
-        <div class="col-lg-6 col-md-6 bg-gray-light">
-            @{
-                Html.RenderPartial("_List", Model);
-            }
+
+        <div class="row bg-gray-light">
+            <div id="EmployeeListDivId">
+                @*List Partial View here*@
+
+                @*@{
+                    Html.RenderPartial("List", Model);
+                }*@
+            </div>
         </div>
 
         <div class="col-lg-1 col-md-1">
             <p>&nbsp;</p>
         </div>
 
-        <div class="col-lg-4 col-md-4 bg-gray-light">
+        @*<div class="row col-lg-4 col-md-4 bg-gray-light">
             @{
-                Html.RenderPartial("Create", new Employee() {Name = "New Name"});
+                Html.RenderPartial("Create", new Employee() { Name = "New Name" });
             }
-        </div>
+        </div>*@
     }
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(function () {
+
+            Load_EmployeeList_PartialView(); // first time
+
+            // re-call the function each 3 seconds
+           // window.setInterval("Load_EmployeeList_PartialView()", 5000);
+          
+        });
+
+        function Load_EmployeeList_PartialView() {
+            $.ajax({
+                url: "@Url.Action("List", "Employee")",
+                type: 'GET', // <-- make a async request by GET
+            dataType: 'html', // <-- to expect an html response
+            success: function (result) {
+                $('#EmployeeListDivId').html(result);
+            }
+        });
+        }
+
+
+        // --------------------------------------------------------------------
+
+
+
+
+        
+    </script>
 }

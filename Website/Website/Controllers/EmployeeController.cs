@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI;
 using DataLayer;
 
 namespace Website.Controllers
@@ -20,10 +19,24 @@ namespace Website.Controllers
             return View(employeeList);
         }
 
+
+        public ActionResult List()
+        {
+            repository = new CompanyRepository();
+
+            IEnumerable<Employee> employeeList = repository.Employees.ToList();
+
+            return PartialView(employeeList);
+        }
+
         // GET: EmployeeController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            repository = new CompanyRepository();
+
+            Employee employee = repository.Employees.FirstOrDefault(e => e.Id == id);
+
+            return PartialView(employee);
         }
 
         // GET: EmployeeController/Create
@@ -40,7 +53,7 @@ namespace Website.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
+                    return PartialView(new Employee());
                 }
 
                 if (repository == null)
@@ -51,11 +64,11 @@ namespace Website.Controllers
                 repository.Employees.Add(employee);
                 repository.SaveChanges();
 
-                return PartialView(new Employee());
+                return Json(true);
             }
             catch
             {
-                return View(new Employee());
+                return Json(false);
             }
         }
 
